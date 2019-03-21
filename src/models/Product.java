@@ -47,7 +47,7 @@ public class Product {
         if (this == obj)
             return true;
 
-        if (obj == null || obj.getClass() != this.getClass() )
+        if (obj == null || obj.getClass() != this.getClass())
             return false;
 
         Product product = (Product) obj;

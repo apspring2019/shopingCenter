@@ -60,7 +60,7 @@ public class Request {
         RequestType type = getType();
         if (type == null)
             return false;
-        switch (type){
+        switch (type) {
             case ADD:
                 return checkSyntaxOfAddCommand();
             case BUY:
@@ -81,8 +81,8 @@ public class Request {
         String str = command.substring(CHANGE_PRICE_COMMAND.length());
         Pattern sell = Pattern.compile("(\\S+) of (\\S+) (\\d+)");
         Matcher matcher = sell.matcher(str);
-        if (matcher.find()){
-            Product newP = new Product(matcher.group(1) , Integer.parseInt(matcher.group(3)) , 0);
+        if (matcher.find()) {
+            Product newP = new Product(matcher.group(1), Integer.parseInt(matcher.group(3)), 0);
             products.add(newP);
         } else {
             error = INVALID_INPUT;
@@ -105,17 +105,16 @@ public class Request {
     }
 
     private boolean checkSyntaxOfBuyCommand() {
-        Pattern productsPattern =  Pattern.compile("(\\S+) (\\d+) (\\d+)");
+        Pattern productsPattern = Pattern.compile("(\\S+) (\\d+) (\\d+)");
         String nameOfStore = getNameOfStore();
         if (isStoreNameInvalid(nameOfStore))
             return false;
-        String str = command.substring(BUY_FOR_STORE.length() +nameOfStore.length()+2);
+        String str = command.substring(BUY_FOR_STORE.length() + nameOfStore.length() + 2);
         Matcher matcher = productsPattern.matcher(str);
         if (matcher.find()) {
-            Product newP = new Product(matcher.group(1) , Integer.parseInt(matcher.group(3)) , Integer.parseInt(matcher.group(2)));
+            Product newP = new Product(matcher.group(1), Integer.parseInt(matcher.group(3)), Integer.parseInt(matcher.group(2)));
             products.add(newP);
-        }
-        else {
+        } else {
             error = INVALID_INPUT;
             return false;
         }
@@ -123,16 +122,15 @@ public class Request {
     }
 
     private boolean checkSyntaxOfSellCommand() {
-        Pattern productsPattern =  Pattern.compile("(\\S+) (\\d+)");
+        Pattern productsPattern = Pattern.compile("(\\S+) (\\d+)");
         String nameOfStore = getNameOfStore();
         if (isStoreNameInvalid(nameOfStore)) return false;
-        String str = command.substring(SELL_FROM_STORE.length() +nameOfStore.length()+2);
+        String str = command.substring(SELL_FROM_STORE.length() + nameOfStore.length() + 2);
         Matcher matcher = productsPattern.matcher(str);
         if (matcher.find()) {
-            Product newP = new Product(matcher.group(1) , 0 , Integer.parseInt(matcher.group(2)));
+            Product newP = new Product(matcher.group(1), 0, Integer.parseInt(matcher.group(2)));
             products.add(newP);
-        }
-        else {
+        } else {
             error = INVALID_INPUT;
             return false;
         }
@@ -158,16 +156,15 @@ public class Request {
         }
         String string = command.substring(ADD_STORE.length() + nameOfStore.length() + 1);
         Matcher matcher = productNames.matcher(string);
-        while(matcher.find()) {
+        while (matcher.find()) {
             hasProduct = true;
-            if(matcher.group(2).equals("") || matcher.group(3).equals("")){
+            if (matcher.group(2).equals("") || matcher.group(3).equals("")) {
                 error = INVALID_INPUT;
                 products = null;
                 return false;
-            }
-            else {
-                Product invalidPattern = new Product(matcher.group(1) , Integer.parseInt(matcher.group(3)) , Integer.parseInt(matcher.group(2)));
-                if(products.contains(invalidPattern)) {
+            } else {
+                Product invalidPattern = new Product(matcher.group(1), Integer.parseInt(matcher.group(3)), Integer.parseInt(matcher.group(2)));
+                if (products.contains(invalidPattern)) {
                     error = INVALID_INPUT;
                     products = null;
                     return false;
@@ -175,18 +172,18 @@ public class Request {
                 products.add(invalidPattern);
             }
         }
-        if (!validStoreName()){
+        if (!validStoreName()) {
             error = ERROR_WITHOUT_MESSAGE;
             return false;
         }
-        if(!hasProduct){
+        if (!hasProduct) {
             error = ERROR_WITHOUT_MESSAGE;
         }
         return hasProduct;
     }
 
     public RequestType getType() {
-        if (command== null || command.equals("")){
+        if (command == null || command.equals("")) {
             return null;
         }
         if (command.substring(0, 3).matches(END)) {
@@ -206,15 +203,15 @@ public class Request {
     }
 
     public String getNameOfStore() {
-        switch (getType()){
+        switch (getType()) {
             case ADD:
-                if(command.split("\\s").length > 1)
+                if (command.split("\\s").length > 1)
                     return command.split("\\s")[1];
                 else
                     error = INVALID_INPUT;
                 break;
             case BUY:
-                if(command.split("\\s").length > 2)
+                if (command.split("\\s").length > 2)
                     return command.split("\\s")[2];
                 else
                     error = INVALID_INPUT;
@@ -222,19 +219,19 @@ public class Request {
             case EXIT:
                 return null;
             case SELL:
-                if(command.split("\\s").length > 2)
+                if (command.split("\\s").length > 2)
                     return command.split("\\s")[2];
                 else
                     error = INVALID_INPUT;
                 break;
             case SHOW:
-                if(command.split("\\s").length > 1)
+                if (command.split("\\s").length > 1)
                     return command.split("\\s")[1];
                 else
                     error = INVALID_INPUT;
                 break;
             case CHANGE_PRICE:
-                if(command.split("\\s").length > 4)
+                if (command.split("\\s").length > 4)
                     return command.split("\\s")[4];
                 else
                     error = INVALID_INPUT;

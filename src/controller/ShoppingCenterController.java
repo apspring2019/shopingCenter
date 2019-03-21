@@ -28,7 +28,7 @@ public class ShoppingCenterController {
                     break;
                 case CHANGE_PRICE:
                     changePrice(view, request);
-                break;
+                    break;
                 case SHOW:
                     show(view, request);
                     break;
@@ -90,7 +90,7 @@ public class ShoppingCenterController {
     private HashMap<String, Product> convertArrayToHashMap(Request request) {
         HashMap<String, Product> products = new HashMap<>();
         for (Product product : request.getProducts()
-        ) {
+                ) {
             products.put(product.getName(), product);
         }
         return products;
