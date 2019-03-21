@@ -43,14 +43,14 @@ public class ShoppingCenterController {
     }
 
     private void buy(View view, Request request) {
-        if (checkStoreName(view, request))
+        if (isStoreNameInvalid(view, request))
             return;
         Product buyP = request.getProducts().get(0);
         shoppingCenter.buy(request.getNameOfStore(), buyP.getName(), buyP.getNumber(), buyP.getPrice());
     }
 
     private void sell(View view, Request request) {
-        if (checkStoreName(view, request))
+        if (isStoreNameInvalid(view, request))
             return;
         Product sellP = request.getProducts().get(0);
         shoppingCenter.sell(request.getNameOfStore(), sellP.getName(), sellP.getNumber());
@@ -62,19 +62,19 @@ public class ShoppingCenterController {
     }
 
     private void changePrice(View view, Request request) {
-        if (checkStoreName(view, request))
+        if (isStoreNameInvalid(view, request))
             return;
         Product changePriceP = request.getProducts().get(0);
         shoppingCenter.changePrice(request.getNameOfStore(), changePriceP.getName(), changePriceP.getPrice());
     }
 
     private void show(View view, Request request) {
-        if (checkStoreName(view, request))
+        if (isStoreNameInvalid(view, request))
             return;
         shoppingCenter.show(request.getNameOfStore());
     }
 
-    private boolean checkStoreName(View view, Request request) {
+    private boolean isStoreNameInvalid(View view, Request request) {
         if (!hasStore(shoppingCenter, request)) {
             request.setError(ErrorType.NOT_SUCH_STORE);
             view.printError(request.getError());
