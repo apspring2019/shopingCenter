@@ -1,4 +1,4 @@
-package Models;
+package models;
 
 public enum ErrorType {
     NOT_SUCH_STORE("no such store"),

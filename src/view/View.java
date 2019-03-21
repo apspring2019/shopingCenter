@@ -1,7 +1,7 @@
 package view;
 
-import Models.ErrorType;
-import Models.Product;
+import models.ErrorType;
+import models.Product;
 
 public class View {
     private static final View VIEW = new View();

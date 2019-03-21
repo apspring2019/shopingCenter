@@ -1,6 +1,6 @@
 package controller;
 
-import Models.*;
+import models.*;
 import view.View;
 import view.Request;
 

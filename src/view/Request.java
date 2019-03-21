@@ -1,17 +1,17 @@
 package view;
 
-import Models.ErrorType;
-import Models.Product;
-import Models.RequestType;
+import models.ErrorType;
+import models.Product;
+import models.RequestType;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static Models.ErrorType.ERROR_WITHOUT_MESSAGE;
-import static Models.ErrorType.INVALID_INPUT;
-import static Models.RequestType.*;
+import static models.ErrorType.ERROR_WITHOUT_MESSAGE;
+import static models.ErrorType.INVALID_INPUT;
+import static models.RequestType.*;
 
 public class Request {
     private Scanner scanner = new Scanner(System.in);
